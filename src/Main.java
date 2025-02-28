@@ -1,38 +1,45 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-
-Scanner keyboard = new Scanner(System.in);
-        //TODO 8: declare and initialize the object of ClassroomCourse class
-        String subjectTitle = "Computer Science";
-        double requiredCredits = 420;
-        Subject subject = new Subject(subjectTitle, requiredCredits);
-        ClassroomCourse classroomCourse = new ClassroomCourse(subject, "Yousef", 25, "Rhodes University", "Data structures");
-        //TODO 9: declare and initialize the Learner object
-        Learner learner = new Learner("Sinawo", 7, classroomCourse, 7);
-        System.out.println(learner.toString());
-        //TODO 18: display course list and accept user choice
-        System.out.println("Choose preferred course from the following");
-        System.out.println("1 = Java \n2 = Java Online \n3 = JavaScript \n4 = JavaScript Online" );
-        System.out.print("Enter your choice: ");
-
-        //TODO 19: initialize object of chose course
-        int courseChoice = (keyboard.nextInt());
-        System.out.println();
 
 
-        //TODO 20: accept user input for learner's name
-        System.out.print("Enter the leaner's name: ");
-        String learnerName = keyboard.next();
-        System.out.println();
 
-        //TODO 21: call assignmentScore() method and quizScore() methods
+public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter name: ");
+        String name = in.nextLine();
+        Subject subject1=new Subject("Java", 4);
+        Subject subject2=new Subject("Java Online", 4);
+        Subject subject3=new Subject("JavaScript", 6);
+        Subject subject4=new Subject("JavaScript Online", 6);
+        Course course1=null;
+        System.out.println("Available courses");
+        System.out.println("1. Java");
+        System.out.println("2. Java Online");
+        System.out.println("3. JavaScript");
+        System.out.println("4. JavaScript Online");
+        System.out.println("Enter course code :");
+        int ch=in.nextInt();
+        if (ch==1 || ch==3)
+            course1= new ClassroomCourse(subject1, "Mark", 1000, "Cambridge", "Winter");
+        if (ch==2 || ch==4)
+            course1= new OnlineCourse(subject2, "Mark", 1000);
+        Learner learner = new Learner(name, course1);
+        System.out.println("Enter assignment marks (max 100 for classroom course, 30 for online course)");
+        int mark1 = in.nextInt();
+        System.out.println("Enter quiz marks (max 30 for classroom course, 10 for online course)");
+        int mark2 = in.nextInt();
+        learner.assignmentScore(mark1);
+        learner.quizScore(mark2);
+        String title=learner.course.subject.title;
+        System.out.println("Grade score: " + learner.calculateGrade());
+        if (learner.gradeScore>=5)
+            System.out.println("Congratulations "+learner.name
+                    +" you have successfully passed the "+title+" course");
+        else
+            System.out.println("Congratulations "+learner.name
+                    +" you have successfully completed the "+title+" course");
 
-        learner.assignmentScore(learner.course.assignmentMarks);
-        learner.quizScore(learner.course.quizMarks);
-        //TODO 22: call assignmentScore() method. Display the result as described
-        System.out.println(" The grade of the leaner: " + learner.calculateGrade())  ;
-    
     }
+
 }
