@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Scanner keyboard = new Scanner(System.in);
+Scanner keyboard = new Scanner(System.in);
         //TODO 8: declare and initialize the object of ClassroomCourse class
         String subjectTitle = "Computer Science";
         double requiredCredits = 420;
@@ -29,6 +29,10 @@ public class Main {
 
         //TODO 21: call assignmentScore() method and quizScore() methods
 
+        learner.assignmentScore(learner.course.assignmentMarks);
+        learner.quizScore(learner.course.quizMarks);
         //TODO 22: call assignmentScore() method. Display the result as described
+        System.out.println(" The grade of the leaner: " + learner.calculateGrade())  ;
+    
     }
 }
