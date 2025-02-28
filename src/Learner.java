@@ -7,7 +7,7 @@ public class Learner implements Assessments {
      Course course;
      double gradeScore;
 
-    public Learner(String name, double grade, Course course, double gradeScore) {
+    public Learner(String name, Course course) {
         this.name = name ;
         this.grade = grade;
         this.course = course;
@@ -25,6 +25,7 @@ public class Learner implements Assessments {
 
     @Override
     public void assignmentScore(int marks) {
+        this.course.quizMarks = marks;
         System.out.println("Learner Assignment Score: " + marks);
 
     }
@@ -32,6 +33,7 @@ public class Learner implements Assessments {
     //TODO 14: override quizScore() method
     @Override
     public void quizScore(int marks) {
+        this.course.quizMarks = marks;
         System.out.println("Learner Quiz Score: " + marks);
     }
 
@@ -45,8 +47,8 @@ public class Learner implements Assessments {
            maxAssignmentMarks = 100;
            maxQuizMarks = 30;
        }
-       int quizScore = (this.course.quizMarks/maxQuizMarks ) * 10;
-       int assignmentScore = (this.course.assignmentMarks/maxQuizMarks) * 10;
+       double quizScore = (double)(this.course.quizMarks/maxQuizMarks ) * 10;
+       double assignmentScore = (double)(this.course.assignmentMarks/maxQuizMarks) * 10;
        this.gradeScore = (quizScore  + assignmentScore) / 2;
         return this.gradeScore;
     }
